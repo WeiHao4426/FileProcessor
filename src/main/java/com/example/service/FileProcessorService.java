@@ -78,7 +78,9 @@ public class FileProcessorService {
                         String fullContent = "### 实验题目：\n" + topic.getInclude() + "\n### 学生代码：\n" + code;
                         System.out.println("学生ID：" + data.getStudentid());
                         System.out.println(fullContent);
-                        System.out.println("---------成功----------");
+                        System.out.println("---------成功----------\n 答案:");
+
+                        System.out.println(ApiService.ApiPoster(fullContent));
                     }
                    else System.out.println("---------失败----------");
 

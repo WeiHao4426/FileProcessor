@@ -16,7 +16,10 @@
 
 <properties>
     <java.version>21</java.version>
+    <!-- 选择与你的 Spring Boot 版本匹配的 Jackson 版本 -->
+    <jackson.version>2.15.3</jackson.version>
 </properties>
+
 <dependencies>
     <dependency>
         <groupId>org.springframework.boot</groupId>
@@ -30,12 +33,24 @@
         <version>4.5.13</version>
     </dependency>
 
-    <!-- JSON处理 -->
-    <dependency>
-        <groupId>com.fasterxml.jackson.core</groupId>
-        <artifactId>jackson-databind</artifactId>
-        <version>2.13.3</version>
-    </dependency>
+
+        <!-- 确保所有 Jackson 组件版本一致 -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+
 
 
     <dependency>

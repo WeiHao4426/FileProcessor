@@ -1,4 +1,4 @@
-package com.example.test;
+package com.example.service;
 
 import com.example.client.DifyApiClient;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -8,17 +8,21 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class TextGenerationExample {
-    public static void main(String[] args) {
+
+public class ApiService {
+
+    public static String ApiPoster(String dynamicQuery) {
         String apiKey = "app-HdDir9lLF2cGLkLJ6NZWPpgm";
         DifyApiClient client = new DifyApiClient(apiKey);
+
+        String answer = null;
 
         ObjectMapper mapper = new ObjectMapper();
         ObjectNode requestBody = mapper.createObjectNode();
 
         // 根据新要求构建请求体
         requestBody.set("inputs", mapper.createObjectNode());  // 空对象
-        requestBody.put("query", "11111");
+        requestBody.put("query", dynamicQuery);
         requestBody.put("response_mode", "blocking");
         requestBody.put("conversation_id", "");
         requestBody.put("user", "abc-123");
@@ -27,7 +31,7 @@ public class TextGenerationExample {
             String response = client.post("/chat-messages", requestBody.toString());
             try {
                 JsonNode rootNode = mapper.readTree(response);
-                String answer = rootNode.get("answer").asText();
+                answer = rootNode.get("answer").asText();
 
                 answer = unicodeDecode(answer);
 
@@ -41,6 +45,8 @@ public class TextGenerationExample {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        return answer;
     }
 
     public static String unicodeDecode(String string) {
@@ -54,3 +60,4 @@ public class TextGenerationExample {
         return string;
     }
 }
+
