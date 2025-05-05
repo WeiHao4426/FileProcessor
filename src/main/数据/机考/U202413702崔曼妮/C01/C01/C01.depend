@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1733906716 source:e:\sjy\cuimanni\c01\main.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+

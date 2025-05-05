@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.DatasMapper">
+
+    <select id="selectAll" resultType="com.example.entity.Datas">
+        select * from `datas`
+        <where>
+            <if test="studentid != null and studentid != ''">studentid like concat('%', #{studentid}, '%')</if>
+            <if test="name != null and name != ''">and name like concat('%', #{name}, '%')</if>
+        </where>
+        order by id desc
+    </select>
+
+    <insert id="insert">
+        insert into `datas` (studentid,name,A01,A01code,A01report,B01,B01code,B01report,C01,C01code,C01report,A02,A02code,A02report,B02,B02code,B02report,C02,C02code,C02report,A03,A03code,A03report,B03,B03code,B03report,C03,C03code,C03report,A04,A04code,A04report,B04,B04code,B04report,C04,C04code,C04report,report)
+        values(#{studentid},#{name},#{A01},#{A01code},#{A01report},#{B01},#{B01code},#{B01report},#{C01},#{C01code},#{C01report},#{A02},#{A02code},#{A02report},#{B02},#{B02code},#{B02report},#{C02},#{C02code},#{C02report},#{A03},#{A03code},#{A03report},#{B03},#{B03code},#{B03report},#{C03},#{C03code},#{C03report},#{A04},#{A04code},#{A04report},#{B04},#{B04code},#{B04report},#{C04},#{C04code},#{C04report},#{report})
+    </insert>
+
+    <insert id="insertNoRepo">
+        insert into `datas` (studentid,name,A01,A01code,A01report,B01,B01code,B01report,C01,C01code,C01report,A02,A02code,A02report,B02,B02code,B02report,C02,C02code,C02report,A03,A03code,A03report,B03,B03code,B03report,C03,C03code,C03report,A04,A04code,A04report,B04,B04code,B04report,C04,C04code,C04report)
+        values(#{studentid},#{name},#{A01},#{A01code},#{A01report},#{B01},#{B01code},#{B01report},#{C01},#{C01code},#{C01report},#{A02},#{A02code},#{A02report},#{B02},#{B02code},#{B02report},#{C02},#{C02code},#{C02report},#{A03},#{A03code},#{A03report},#{B03},#{B03code},#{B03report},#{C03},#{C03code},#{C03report},#{A04},#{A04code},#{A04report},#{B04},#{B04code},#{B04report},#{C04},#{C04code},#{C04report})
+    </insert>
+
+    <update id="updateById">
+        update `datas` set username = #{username}, password = #{password}, name = #{name},
+        phone = #{phone}, email = #{email}, avatar = #{avatar}
+        where id = #{id}
+    </update>
+    <!--    别用updateById-->
+
+    <update id="updateByStudentId">
+        update `datas` set name = #{name}, report = #{report},
+        A01 = #{A01}, A01code = #{A01code}, A01report = #{A01report},
+        A02 = #{A02}, A02code = #{A02code}, A02report = #{A02report},
+        A03 = #{A03}, A03code = #{A03code}, A03report = #{A03report},
+        A04 = #{A04}, A04code = #{A04code}, A04report = #{A04report},
+        B01 = #{B01}, B01code = #{B01code}, B01report = #{B01report},
+        B02 = #{B02}, B02code = #{B02code}, B02report = #{B02report},
+        B03 = #{B03}, B03code = #{B03code}, B03report = #{B03report},
+        B04 = #{B04}, B04code = #{B04code}, B04report = #{B04report},
+        C01 = #{C01}, C01code = #{C01code}, C01report = #{C01report},
+        C02 = #{C02}, C02code = #{C02code}, C02report = #{C02report},
+        C03 = #{C03}, C03code = #{C03code}, C03report = #{C03report},
+        C04 = #{C04}, C04code = #{C04code}, C04report = #{C04report}
+        where studentid = #{studentid}
+    </update>
+
+    <update id="updateByStudentIdNoRepo">
+        update `datas` set name = #{name},
+        A01 = #{A01}, A01code = #{A01code}, A01report = #{A01report},
+        A02 = #{A02}, A02code = #{A02code}, A02report = #{A02report},
+        A03 = #{A03}, A03code = #{A03code}, A03report = #{A03report},
+        A04 = #{A04}, A04code = #{A04code}, A04report = #{A04report},
+        B01 = #{B01}, B01code = #{B01code}, B01report = #{B01report},
+        B02 = #{B02}, B02code = #{B02code}, B02report = #{B02report},
+        B03 = #{B03}, B03code = #{B03code}, B03report = #{B03report},
+        B04 = #{B04}, B04code = #{B04code}, B04report = #{B04report},
+        C01 = #{C01}, C01code = #{C01code}, C01report = #{C01report},
+        C02 = #{C02}, C02code = #{C02code}, C02report = #{C02report},
+        C03 = #{C03}, C03code = #{C03code}, C03report = #{C03report},
+        C04 = #{C04}, C04code = #{C04code}, C04report = #{C04report}
+        where studentid = #{studentid}
+    </update>
+
+
+</mapper>

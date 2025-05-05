@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1733904834 source:e:\c-exam\c04\main.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+

@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1733903806 source:e:\新建文件夹\b03\main.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+

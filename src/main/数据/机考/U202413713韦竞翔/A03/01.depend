@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1733900426 source:d:\wjx\01\main.c
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+	<string.h>
+	<time.h>
+
