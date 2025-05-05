@@ -78,9 +78,9 @@ public class FileProcessorService {
                         String fullContent = "### 实验题目：\n" + topic.getInclude() + "\n### 学生代码：\n" + code;
                         System.out.println("学生ID：" + data.getStudentid());
                         System.out.println(fullContent);
-                        System.out.println("---------成功成功----------");
+                        System.out.println("---------成功----------");
                     }
-                   else System.out.println("---------失败失败----------");
+                   else System.out.println("---------失败----------");
 
                 }
                 if(data.getA02() == 1)
