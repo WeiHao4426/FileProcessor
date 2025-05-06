@@ -13,18 +13,11 @@ import org.springframework.context.ConfigurableApplicationContext;
 @MapperScan("com.example.mapper")
 public class FileProcessorApplication {
 
-//
-//    public static void main(String[] args) {
-//        SpringApplication.run(FileProcessorApplication.class, args);
-//    }
     public static void main(String[] args) {
         ConfigurableApplicationContext context = SpringApplication.run(FileProcessorApplication.class, args);
 
         // 获取 FileProcessorService bean
         FileProcessorService fileProcessorService = context.getBean(FileProcessorService.class);
-
-        // 处理指定学生的文件
-        //fileProcessorService.processStudentFile("U202411198");
 
         // 获取文件处理器实例
         FileProcessorService processor = context.getBean(FileProcessorService.class);

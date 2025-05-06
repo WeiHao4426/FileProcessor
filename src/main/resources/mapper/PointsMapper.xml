@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.PointsMapper">
+
+    <insert id="insert">
+        insert into `points` (topic,total,studentid,typesettingScore,namingScore,requirement1,requirement2,requirement3,otherScore,evaluation)
+        values(#{topic},#{total},#{studentid},#{typesettingScore},#{namingScore},#{requirement1},#{requirement2},#{requirement3},#{otherScore},#{evaluation})
+    </insert>
+
+
+    <update id="updateByStudentIdAndTopic">
+        update `points` set total = #{total},
+        typesettingScore = #{typesettingScore}, namingScore = #{namingScore}, requirement1 = #{requirement1},
+        requirement2 = #{requirement2}, requirement3 = #{requirement3}, otherScore = #{otherScore},
+        evaluation = #{evaluation}
+        where studentid = #{studentid} and topic = #{topic}
+    </update>
+
+
+</mapper>

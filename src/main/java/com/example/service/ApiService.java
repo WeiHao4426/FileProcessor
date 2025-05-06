@@ -1,10 +1,13 @@
 package com.example.service;
 
 import com.example.client.DifyApiClient;
+import com.example.entity.Points;
+import com.example.mapper.PointsMapper;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
+import java.awt.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -35,13 +38,11 @@ public class ApiService {
 
                 answer = unicodeDecode(answer);
 
-                System.out.println("提取的 answer 内容：");
-                System.out.println(answer);
             } catch (Exception e) {
                 e.printStackTrace();
             }
 
-            System.out.println("API响应: " + response);
+            //System.out.println("API响应: " + response);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -59,5 +60,6 @@ public class ApiService {
         }
         return string;
     }
+
 }
 

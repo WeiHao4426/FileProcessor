@@ -1,9 +1,11 @@
 package com.example.service;
 
 import com.example.entity.Datas;
+import com.example.entity.Points;
 import com.example.entity.Topic;
 import com.example.mapper.DatasMapper;
 import com.example.mapper.TopicMapper;
+import com.example.mapper.PointsMapper;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -21,6 +23,9 @@ public class FileProcessorService {
 
     @Autowired
     private TopicMapper topicMapper;
+
+    @Autowired
+    private PointsMapper pointsMapper;
 
     // 批次大小可配置
     @Value("${batch.size:1000}")
@@ -72,18 +77,15 @@ public class FileProcessorService {
 
                     // 读取对应的实验题目
                     topic = topicMapper.getIncludeById(1);
+                    String topicName = topic.getName();
 
                     // 拼接并输出
                     if (topic != null) {
                         String fullContent = "### 实验题目：\n" + topic.getInclude() + "\n### 学生代码：\n" + code;
-                        System.out.println("学生ID：" + data.getStudentid());
-                        System.out.println(fullContent);
-                        System.out.println("---------成功----------\n 答案:");
 
-                        System.out.println(ApiService.ApiPoster(fullContent));
+                        String answer = ApiService.ApiPoster(fullContent);
+                        ScoreExtractor(answer,data.getStudentid(),topicName);
                     }
-                   else System.out.println("---------失败----------");
-
                 }
                 if(data.getA02() == 1)
                 {
@@ -91,14 +93,16 @@ public class FileProcessorService {
                     String[] codeLines = FileEncodingConverter.convertCFileToUTF8(data.getA02code());
                     String code = String.join("\n", codeLines);
 
-                    // 读取对应的实验题目
-                    topic = topicMapper.getIncludeByName("A02");
+                    topic = topicMapper.getIncludeById(2);
+                    String topicName = topic.getName();
 
                     // 拼接并输出
-                    String fullContent = "### 实验题目：\n" + topic.getInclude() + "\n### 学生代码：\n" + code;
-                    System.out.println("学生ID：" + data.getStudentid());
-                    System.out.println(fullContent);
-                    System.out.println("-------------------");
+                    if (topic != null) {
+                        String fullContent = "### 实验题目：\n" + topic.getInclude() + "\n### 学生代码：\n" + code;
+
+                        String answer = ApiService.ApiPoster(fullContent);
+                        ScoreExtractor(answer,data.getStudentid(),topicName);
+                    }
                 }
                 if(data.getA03() == 1)
                 {
@@ -106,14 +110,16 @@ public class FileProcessorService {
                     String[] codeLines = FileEncodingConverter.convertCFileToUTF8(data.getA03code());
                     String code = String.join("\n", codeLines);
 
-                    // 读取对应的实验题目
-                    topic = topicMapper.getIncludeByName("A03");
+                    topic = topicMapper.getIncludeById(3);
+                    String topicName = topic.getName();
 
                     // 拼接并输出
-                    String fullContent = "### 实验题目：\n" + topic.getInclude() + "\n### 学生代码：\n" + code;
-                    System.out.println("学生ID：" + data.getStudentid());
-                    System.out.println(fullContent);
-                    System.out.println("-------------------");
+                    if (topic != null) {
+                        String fullContent = "### 实验题目：\n" + topic.getInclude() + "\n### 学生代码：\n" + code;
+
+                        String answer = ApiService.ApiPoster(fullContent);
+                        ScoreExtractor(answer,data.getStudentid(),topicName);
+                    }
                 }
                 if(data.getA04() == 1)
                 {
@@ -121,14 +127,16 @@ public class FileProcessorService {
                     String[] codeLines = FileEncodingConverter.convertCFileToUTF8(data.getA04code());
                     String code = String.join("\n", codeLines);
 
-                    // 读取对应的实验题目
-                    topic = topicMapper.getIncludeByName("A04");
+                    topic = topicMapper.getIncludeById(4);
+                    String topicName = topic.getName();
 
                     // 拼接并输出
-                    String fullContent = "### 实验题目：\n" + topic.getInclude() + "\n### 学生代码：\n" + code;
-                    System.out.println("学生ID：" + data.getStudentid());
-                    System.out.println(fullContent);
-                    System.out.println("-------------------");
+                    if (topic != null) {
+                        String fullContent = "### 实验题目：\n" + topic.getInclude() + "\n### 学生代码：\n" + code;
+
+                        String answer = ApiService.ApiPoster(fullContent);
+                        ScoreExtractor(answer,data.getStudentid(),topicName);
+                    }
                 }
                 if(data.getB01() == 1)
                 {
@@ -136,14 +144,16 @@ public class FileProcessorService {
                     String[] codeLines = FileEncodingConverter.convertCFileToUTF8(data.getB01code());
                     String code = String.join("\n", codeLines);
 
-                    // 读取对应的实验题目
-                    topic = topicMapper.getIncludeByName("B01");
+                    topic = topicMapper.getIncludeById(5);
+                    String topicName = topic.getName();
 
                     // 拼接并输出
-                    String fullContent = "### 实验题目：\n" + topic.getInclude() + "\n### 学生代码：\n" + code;
-                    System.out.println("学生ID：" + data.getStudentid());
-                    System.out.println(fullContent);
-                    System.out.println("-------------------");
+                    if (topic != null) {
+                        String fullContent = "### 实验题目：\n" + topic.getInclude() + "\n### 学生代码：\n" + code;
+
+                        String answer = ApiService.ApiPoster(fullContent);
+                        ScoreExtractor(answer,data.getStudentid(),topicName);
+                    }
                 }
                 if(data.getB02() == 1)
                 {
@@ -151,14 +161,16 @@ public class FileProcessorService {
                     String[] codeLines = FileEncodingConverter.convertCFileToUTF8(data.getB02code());
                     String code = String.join("\n", codeLines);
 
-                    // 读取对应的实验题目
-                    topic = topicMapper.getIncludeByName("B02");
+                    topic = topicMapper.getIncludeById(6);
+                    String topicName = topic.getName();
 
                     // 拼接并输出
-                    String fullContent = "### 实验题目：\n" + topic.getInclude() + "\n### 学生代码：\n" + code;
-                    System.out.println("学生ID：" + data.getStudentid());
-                    System.out.println(fullContent);
-                    System.out.println("-------------------");
+                    if (topic != null) {
+                        String fullContent = "### 实验题目：\n" + topic.getInclude() + "\n### 学生代码：\n" + code;
+
+                        String answer = ApiService.ApiPoster(fullContent);
+                        ScoreExtractor(answer,data.getStudentid(),topicName);
+                    }
                 }
                 if(data.getB03() == 1)
                 {
@@ -166,14 +178,16 @@ public class FileProcessorService {
                     String[] codeLines = FileEncodingConverter.convertCFileToUTF8(data.getB03code());
                     String code = String.join("\n", codeLines);
 
-                    // 读取对应的实验题目
-                    topic = topicMapper.getIncludeByName("B03");
+                    topic = topicMapper.getIncludeById(7);
+                    String topicName = topic.getName();
 
                     // 拼接并输出
-                    String fullContent = "### 实验题目：\n" + topic.getInclude() + "\n### 学生代码：\n" + code;
-                    System.out.println("学生ID：" + data.getStudentid());
-                    System.out.println(fullContent);
-                    System.out.println("-------------------");
+                    if (topic != null) {
+                        String fullContent = "### 实验题目：\n" + topic.getInclude() + "\n### 学生代码：\n" + code;
+
+                        String answer = ApiService.ApiPoster(fullContent);
+                        ScoreExtractor(answer,data.getStudentid(),topicName);
+                    }
                 }
                 if(data.getB04() == 1)
                 {
@@ -181,14 +195,16 @@ public class FileProcessorService {
                     String[] codeLines = FileEncodingConverter.convertCFileToUTF8(data.getB04code());
                     String code = String.join("\n", codeLines);
 
-                    // 读取对应的实验题目
-                    topic = topicMapper.getIncludeByName("B04");
+                    topic = topicMapper.getIncludeById(8);
+                    String topicName = topic.getName();
 
                     // 拼接并输出
-                    String fullContent = "### 实验题目：\n" + topic.getInclude() + "\n### 学生代码：\n" + code;
-                    System.out.println("学生ID：" + data.getStudentid());
-                    System.out.println(fullContent);
-                    System.out.println("-------------------");
+                    if (topic != null) {
+                        String fullContent = "### 实验题目：\n" + topic.getInclude() + "\n### 学生代码：\n" + code;
+
+                        String answer = ApiService.ApiPoster(fullContent);
+                        ScoreExtractor(answer,data.getStudentid(),topicName);
+                    }
                 }
                 if(data.getC01() == 1)
                 {
@@ -196,14 +212,16 @@ public class FileProcessorService {
                     String[] codeLines = FileEncodingConverter.convertCFileToUTF8(data.getC01code());
                     String code = String.join("\n", codeLines);
 
-                    // 读取对应的实验题目
-                    topic = topicMapper.getIncludeByName("C01");
+                    topic = topicMapper.getIncludeById(9);
+                    String topicName = topic.getName();
 
                     // 拼接并输出
-                    String fullContent = "### 实验题目：\n" + topic.getInclude() + "\n### 学生代码：\n" + code;
-                    System.out.println("学生ID：" + data.getStudentid());
-                    System.out.println(fullContent);
-                    System.out.println("-------------------");
+                    if (topic != null) {
+                        String fullContent = "### 实验题目：\n" + topic.getInclude() + "\n### 学生代码：\n" + code;
+
+                        String answer = ApiService.ApiPoster(fullContent);
+                        ScoreExtractor(answer,data.getStudentid(),topicName);
+                    }
                 }
                 if(data.getC02() == 1)
                 {
@@ -211,14 +229,16 @@ public class FileProcessorService {
                     String[] codeLines = FileEncodingConverter.convertCFileToUTF8(data.getC02code());
                     String code = String.join("\n", codeLines);
 
-                    // 读取对应的实验题目
-                    topic = topicMapper.getIncludeByName("C02");
+                    topic = topicMapper.getIncludeById(10);
+                    String topicName = topic.getName();
 
                     // 拼接并输出
-                    String fullContent = "### 实验题目：\n" + topic.getInclude() + "\n### 学生代码：\n" + code;
-                    System.out.println("学生ID：" + data.getStudentid());
-                    System.out.println(fullContent);
-                    System.out.println("-------------------");
+                    if (topic != null) {
+                        String fullContent = "### 实验题目：\n" + topic.getInclude() + "\n### 学生代码：\n" + code;
+
+                        String answer = ApiService.ApiPoster(fullContent);
+                        ScoreExtractor(answer,data.getStudentid(),topicName);
+                    }
                 }
                 if(data.getC03() == 1)
                 {
@@ -226,14 +246,16 @@ public class FileProcessorService {
                     String[] codeLines = FileEncodingConverter.convertCFileToUTF8(data.getC03code());
                     String code = String.join("\n", codeLines);
 
-                    // 读取对应的实验题目
-                    topic = topicMapper.getIncludeByName("C03");
+                    topic = topicMapper.getIncludeById(11);
+                    String topicName = topic.getName();
 
                     // 拼接并输出
-                    String fullContent = "### 实验题目：\n" + topic.getInclude() + "\n### 学生代码：\n" + code;
-                    System.out.println("学生ID：" + data.getStudentid());
-                    System.out.println(fullContent);
-                    System.out.println("-------------------");
+                    if (topic != null) {
+                        String fullContent = "### 实验题目：\n" + topic.getInclude() + "\n### 学生代码：\n" + code;
+
+                        String answer = ApiService.ApiPoster(fullContent);
+                        ScoreExtractor(answer,data.getStudentid(),topicName);
+                    }
                 }
                 if(data.getC04() == 1)
                 {
@@ -241,14 +263,16 @@ public class FileProcessorService {
                     String[] codeLines = FileEncodingConverter.convertCFileToUTF8(data.getC04code());
                     String code = String.join("\n", codeLines);
 
-                    // 读取对应的实验题目
-                    topic = topicMapper.getIncludeByName("C04");
+                    topic = topicMapper.getIncludeById(12);
+                    String topicName = topic.getName();
 
                     // 拼接并输出
-                    String fullContent = "### 实验题目：\n" + topic.getInclude() + "\n### 学生代码：\n" + code;
-                    System.out.println("学生ID：" + data.getStudentid());
-                    System.out.println(fullContent);
-                    System.out.println("-------------------");
+                    if (topic != null) {
+                        String fullContent = "### 实验题目：\n" + topic.getInclude() + "\n### 学生代码：\n" + code;
+
+                        String answer = ApiService.ApiPoster(fullContent);
+                        ScoreExtractor(answer,data.getStudentid(),topicName);
+                    }
                 }
             }
         } catch (Exception e) {
@@ -262,13 +286,6 @@ public class FileProcessorService {
         //processComputerExam();
         processAllLoop();
     }
-
-
-//        datas.setA01(1);//修改datas数据
-//        datas.getA02();//获取datas当前数据
-//        datasMapper.insert(datas);//插入当前datas到数据库新行
-//        datasMapper.updateByStudentId(datas);//根据studentid学号，查找并更新datas到该行
-//    }
 
     private void processExperimentReports() {
         File reportRoot = new File("src/main/数据/实验报告");
@@ -463,5 +480,75 @@ public class FileProcessorService {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private static int extractScore(String response, String keyword) {
+        int start = response.indexOf(keyword);
+        if (start == -1) return -1;
+
+        start += keyword.length();
+        int end = response.indexOf("/", start);
+        return Integer.parseInt(response.substring(start, end).trim());
+    }
+
+    private static String extractEvaluation(String response) {
+        int start = response.indexOf("总体评价：");
+        if (start == -1) return "";
+
+        start += "总体评价：".length();
+        return response.substring(start).trim();
+    }
+
+    public void ScoreExtractor(String response,String studentid,String topicName){
+
+        // 提取总得分
+        int total = extractScore(response, "总评分：");
+        // 提取排版得分
+        int typesettingScore = extractScore(response, "程序排版得分：");
+        // 提取变量命名得分
+        int namingScore = extractScore(response, "变量命名得分：");
+        int requirement1 = extractScore(response, "要求1完成度得分：");
+        int requirement2 = extractScore(response, "要求2完成度得分：");
+        int requirement3 = extractScore(response, "要求3完成度得分：");
+        int otherScore = extractScore(response, "其他指标得分：");
+        // 提取总体评价
+        String evaluation = extractEvaluation(response);//评语
+
+//        System.out.println("排版得分：" + typesettingScore);
+//        System.out.println("命名得分：" + namingScore);
+//        System.out.println("总体评价：\n" + evaluation);
+
+        Points points = pointsMapper.selectByStudentidAndTopic(studentid, topicName);
+        //看数据库里是否有这个学生的数据
+        if (points != null) {
+            points.setTotal(total);
+            points.setTypesettingScore(typesettingScore);
+            points.setNamingScore(namingScore);
+            points.setRequirement1(requirement1);
+            points.setRequirement2(requirement2);
+            points.setRequirement3(requirement3);
+            points.setOtherScore(otherScore);
+            points.setEvaluation(evaluation);
+            points.setStudentid(studentid);
+            points.setTopic(topicName);
+
+            pointsMapper.updateByStudentIdAndTopic(points);
+        }
+        else {
+            Points dbpoints = new Points();
+            dbpoints.setTotal(total);
+            dbpoints.setTypesettingScore(typesettingScore);
+            dbpoints.setNamingScore(namingScore);
+            dbpoints.setRequirement1(requirement1);
+            dbpoints.setRequirement2(requirement2);
+            dbpoints.setRequirement3(requirement3);
+            dbpoints.setOtherScore(otherScore);
+            dbpoints.setEvaluation(evaluation);
+            dbpoints.setStudentid(studentid);
+            dbpoints.setTopic(topicName);
+
+            pointsMapper.insert(dbpoints);
+        }
+
     }
 }
